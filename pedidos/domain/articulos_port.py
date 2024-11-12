@@ -20,3 +20,7 @@ class ArticulosPort(ABC):
     @abstractmethod
     def delete(self, articuloId: int) -> None:
         pass
+
+    @abstractmethod
+    def get_next_id(self) -> int:
+        pass

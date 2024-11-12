@@ -1,0 +1,24 @@
+{% extends 'layout/main.html' %}
+
+{% block body %}
+
+<h2>Modificar Articulo {{ articulo.nombre() }} </h2>
+
+{% include 'layout/alert.html' %}
+<div class="form-update">
+    <form method="post">
+        <input type="hidden" name="id" value="{{ articulo.id }}">
+    
+        <div class="mb-3">
+            <label for="codigo" class="form-label">Código</label>
+            <input type="text" id="codigo" name="codigo" class="form-control" value="{{ articulo.codigo() }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" value="{{ articulo.nombre() }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -22,7 +22,7 @@
             <td>{{ articulo.nombre() }}</td>
             <td>
                 <a href="{{ url_for('articulos_edit', id=articulo.id()) }}" class="btn btn-primary">Editar</a>
-                <a href="{{ url_for('articulos_delete', id=articulo.id()) }}" class="btn btn-danger">Eliminar</a>
+                <a href="{{ url_for('articulos_delete', id=articulo.id()) }}" class="btn btn-danger" onclick="return confirm('Desea eliminar el elemento seleccionado?')">Eliminar</a>
             </td>
         </tr>
         {% endfor %}

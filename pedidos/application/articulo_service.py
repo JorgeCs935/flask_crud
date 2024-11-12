@@ -10,7 +10,7 @@ class ArticulosService:
     def add(self, articulo: Articulo) -> None:
         self.articulosPort.save(articulo)
 
-    def get(self, id: int) -> Articulo | None:
+    def get_by_id(self, id: int) -> Articulo | None:
         return self.articulosPort.get_by_id(id)
 
     def find_all(self, filtro: str) -> list:
@@ -21,3 +21,6 @@ class ArticulosService:
 
     def update(self, articulo: Articulo) -> None:
         self.articulosPort.save(articulo)
+
+    def get_next_id(self) -> int:
+        return self.articulosPort.get_next_id()

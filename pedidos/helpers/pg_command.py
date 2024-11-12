@@ -6,7 +6,7 @@ class PGCommand:
     @classmethod
     def get_connection(self):
         conn = pg.connect(
-            dbname="almacen",
+            dbname="ucb_almacen",
             user="ucb",
             host="localhost",
             password="Tarija2024",

@@ -38,13 +38,13 @@ class ArticulosAdapter(ArticulosPort):
     def save(self, articulo: Articulo) -> None:
         sql = """
         insert into articulo (id, codigo, nombre) 
-        values (%(codigo)s, %(codigo)s, %(nombre)s)
+        values (%(id)s, %(codigo)s, %(nombre)s)
         on conflict (id) do update set codigo=%(codigo)s, nombre=%(nombre)s
         """
 
         self.db.execute(
             sql,
-            {"id": articulo.id, "codigo": articulo.codigo, "nombre": articulo.nombre},
+            {"id": articulo.id(), "codigo": articulo.codigo(), "nombre": articulo.nombre()},
         )
 
     def delete(self, articuloId: int) -> None:
@@ -54,3 +54,11 @@ class ArticulosAdapter(ArticulosPort):
             """,
             {"id": articuloId},
         )
+
+    def get_next_id(self) -> int:
+        fila = self.db.queryone(
+            """
+            select nextval('articulo_id_seq') as id
+            """, ()
+        )
+        return fila["id"]
