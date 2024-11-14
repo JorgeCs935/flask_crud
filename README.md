@@ -1,7 +1,8 @@
 # INSTALACIÓN
-
-## Instalación de paquetes
-pip install -r requirements.txt
+conda create --prefix ./env python
+conda activate 
+pip install flask
+pip install "psycopg[binary,pool]"
 
 # Ejecución en modo desarrollo
 conda activate ./env
