@@ -12,3 +12,4 @@ articulos_repository = ArticulosAdapter(db)
 
 from pedidos.presentation.controllers.site_controller import *
 from pedidos.presentation.controllers.articulos_controller import *
+from pedidos.presentation.controllers.articulos_api_controller  import *

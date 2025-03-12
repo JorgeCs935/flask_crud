@@ -1,4 +1,4 @@
-from flask import render_template, session, request, redirect, url_for, flash
+from flask import render_template, json, request, redirect, url_for, flash
 from pedidos.application.articulo_service import ArticulosService
 from pedidos.domain.articulo import Articulo
 from pedidos import app
@@ -11,7 +11,6 @@ def articulos_index():
     articulos = articulosService.find_all("")
 
     return render_template("articulos/index.html", articulos=articulos)
-
 
 @app.route("/articulos/edit/<id>", methods=["GET", "POST"])
 def articulos_edit(id):
@@ -44,3 +43,16 @@ def articulos_delete(id):
     articulosService.remove(articulo.id())
     flash("Articulo eliminado")
     return redirect(url_for("articulos_index"))
+
+
+@app.route("/articulos/algo", methods=["GET"])
+def articulos_algo():
+
+    data = {
+        "texto": "Hola mundo"
+    }
+
+    return app.response_class(
+        response=json.dumps(data),
+        mimetype='application/json'
+    )
