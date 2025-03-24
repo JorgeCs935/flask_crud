@@ -1,11 +1,13 @@
 from flask import  json, request
+from pedidos.adapters.articulos_adapter import ArticulosAdapter
 from pedidos.application.articulo_service import ArticulosService
 from pedidos import app
-from pedidos import articulos_repository
+from pedidos import db
 
 
 @app.route("/articulos-api", methods=["GET"])
 def articulos_api_get_all():
+    articulos_repository = ArticulosAdapter(db)
     articulosService = ArticulosService(articulos_repository)
     articulos = articulosService.find_all("")
 
@@ -24,6 +26,7 @@ def articulos_api_get_all():
 
 @app.route("/articulos-api/<id>", methods=["GET"])
 def articulos_api_get_one(id):
+    articulos_repository = ArticulosAdapter(db)
     articulosService = ArticulosService(articulos_repository)
     articulo = articulosService.get_by_id(id)
 
@@ -52,6 +55,7 @@ def articulos_api_get_one(id):
 
 @app.route("/articulos-api/update/<id>", methods=["POST"])
 def articulos_api_update(id):
+    articulos_repository = ArticulosAdapter(db)
     articulosService = ArticulosService(articulos_repository)
     articulo = articulosService.get_by_id(id)
     if request.method == "POST":
