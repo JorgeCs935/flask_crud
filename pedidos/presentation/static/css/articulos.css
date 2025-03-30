@@ -1,0 +1,61 @@
+/* Fuentes y estilos globales */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Títulos */
+.titulo {
+    color: #007bff;
+    font-weight: 600;
+    font-size: 1.8rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Tablas */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #e9ecef;
+}
+
+/* Botones */
+.btn-custom {
+    background-color: #28a745;
+    color: white;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.btn-custom:hover {
+    background-color: #218838;
+}
+
+.btn-danger i, 
+.btn-warning i {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.btn-sm {
+    padding: 6px 10px;
+}
+
+/* Modales */
+.modal-content {
+    border-radius: 10px;
+}
+
+/* Inputs numéricos */
+input[type=number] {
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+    appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

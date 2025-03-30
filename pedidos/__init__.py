@@ -7,7 +7,7 @@ from pedidos.helpers.pg_command import PGCommand
 app = Flask(__name__, template_folder='./presentation/templates', static_folder='./presentation/static')
 app.config.from_object(config["dev"])
 
-# conda indatall flask_cors
+# conda install flask_cors
 cors = CORS(app, resources={r"/articulos-api": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
