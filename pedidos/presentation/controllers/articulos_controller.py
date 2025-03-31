@@ -21,6 +21,7 @@ def articulos_edit(id):
     if request.method == "POST":
         articulo.setCodigo(request.form["codigo"])
         articulo.setNombre(request.form["nombre"])
+        articulo.setPrecio(request.form["precio"])
         articulosService.update(articulo)        
         return redirect(url_for("articulos_index"))
     return render_template("articulos/update.html", articulo=articulo)
@@ -31,7 +32,7 @@ def articulos_create():
         articulos_repository = ArticulosAdapter(db)
         articulosService = ArticulosService(articulos_repository)
         articuloId = articulosService.get_next_id()
-        articulo = Articulo(id=articuloId, codigo=request.form["codigo"], nombre=request.form["nombre"])
+        articulo = Articulo(id=articuloId, codigo=request.form["codigo"], nombre=request.form["nombre"], precio=request.form["precio"])
         articulosService.add(articulo)
         return redirect(url_for("articulos_index"))
     return render_template("articulos/create.html")

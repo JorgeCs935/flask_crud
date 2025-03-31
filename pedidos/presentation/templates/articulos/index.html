@@ -19,6 +19,7 @@
             <th>Id</th>
             <th>Código</th>
             <th>Nombre</th>
+            <th>Precio (Bs)</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -28,6 +29,7 @@
             <td>{{ articulo.id() }}</td>
             <td>{{ articulo.codigo() }}</td>
             <td>{{ articulo.nombre() }}</td>
+            <td>{{ articulo.precio() }} Bs</td>
             <td>
                 <button onclick="cargarArticuloParaEditar({{ articulo.id() }})" class="btn btn-warning btn-sm">
                     <i class="bi bi-pencil-square"></i>
@@ -59,6 +61,10 @@
                         <label for="crearNombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="crearNombre" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="crearPrecio" class="form-label">Precio</label>
+                        <input type="numeric" class="form-control" id="crearPrecio" required>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -87,6 +93,10 @@
                     <div class="mb-3">
                         <label for="editNombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="editNombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editPrecio" class="form-label">Precio</label>
+                        <input type="numeric" class="form-control" id="editPrecio" required>
                     </div>
                 </form>
             </div>

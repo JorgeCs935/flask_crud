@@ -12,7 +12,7 @@ class ArticulosAdapter(ArticulosPort):
     def get_by_id(self, id: int) -> Articulo | None:
         fila = self.db.queryone(
             """
-            select id, codigo, nombre from articulo where id=%(id)s
+            select id, codigo, nombre, precio from articulo where id=%(id)s
             """,
             {"id": id},
         )
@@ -20,31 +20,31 @@ class ArticulosAdapter(ArticulosPort):
         if fila is None:
             return None
 
-        return Articulo(fila["id"], fila["codigo"], fila["nombre"])
+        return Articulo(fila["id"], fila["codigo"], fila["nombre"], fila["precio"])
 
     def find_all(self, filtro: str) -> list:
         filas = self.db.queryall(
             """
-            select id, codigo, nombre from articulo where nombre LIKE %(filtro)s
+            select id, codigo, nombre, precio from articulo where nombre LIKE %(filtro)s
             """,
             {"filtro": "%" + filtro + "%"},
         )
 
         lista = []
         for fila in filas:
-            lista.append(Articulo(fila["id"], fila["codigo"], fila["nombre"]))
+            lista.append(Articulo(fila["id"], fila["codigo"], fila["nombre"], fila["precio"]))
         return lista
 
     def save(self, articulo: Articulo) -> None:
         sql = """
-        insert into articulo (id, codigo, nombre) 
-        values (%(id)s, %(codigo)s, %(nombre)s)
-        on conflict (id) do update set codigo=%(codigo)s, nombre=%(nombre)s
+        insert into articulo (id, codigo, nombre, precio) 
+        values (%(id)s, %(codigo)s, %(nombre)s, %(precio)s)
+        on conflict (id) do update set codigo=%(codigo)s, nombre=%(nombre)s, precio=%(precio)s
         """
 
         self.db.execute(
             sql,
-            {"id": articulo.id(), "codigo": articulo.codigo(), "nombre": articulo.nombre()},
+            {"id": articulo.id(), "codigo": articulo.codigo(), "nombre": articulo.nombre(), "precio": articulo.precio()},
         )
 
     def delete(self, articuloId: int) -> None:

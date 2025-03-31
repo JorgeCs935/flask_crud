@@ -7,12 +7,13 @@ window.mostrarModalCrear = function() {
 window.crearArticulo = async function() {
     const codigo = document.getElementById("crearCodigo").value;
     const nombre = document.getElementById("crearNombre").value;
+    const precio = document.getElementById("crearPrecio").value;
 
     try {
         const response = await fetch('/articulos-api', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ codigo, nombre })
+            body: JSON.stringify({ codigo, nombre, precio })
         });
         const result = await response.json();
         
@@ -37,6 +38,7 @@ window.cargarArticuloParaEditar = async function(id) {
             document.getElementById("editId").value = data.articulo.id;
             document.getElementById("editCodigo").value = data.articulo.codigo;
             document.getElementById("editNombre").value = data.articulo.nombre;
+            document.getElementById("editPrecio").value = data.articulo.precio;
             
             const modal = new bootstrap.Modal(document.getElementById('editarArticuloModal'));
             modal.show();
@@ -50,12 +52,13 @@ window.guardarCambios = async function() {
     const id = document.getElementById("editId").value;
     const codigo = document.getElementById("editCodigo").value;
     const nombre = document.getElementById("editNombre").value;
+    const precio = document.getElementById("editPrecio").value;
 
     try {
         const response = await fetch(`/articulos-api/update/${id}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ codigo, nombre })
+            body: JSON.stringify({ codigo, nombre, precio })
         });
         const result = await response.json();
 

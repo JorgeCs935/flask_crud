@@ -16,7 +16,8 @@ def articulos_api_get_all():
         data.append({
             "id": articulo.id(),
             "codigo": articulo.codigo(),
-            "nombre": articulo.nombre()
+            "nombre": articulo.nombre(),
+            "precio": articulo.precio()
         })
 
     return app.response_class(
@@ -45,7 +46,8 @@ def articulos_api_get_one(id):
         "articulo": {
             "id": articulo.id(),
             "codigo": articulo.codigo(),
-            "nombre": articulo.nombre()
+            "nombre": articulo.nombre(),
+            "precio": articulo.precio()
         }
     }
     return app.response_class(
@@ -66,7 +68,8 @@ def articulos_api_create():
             articulo = Articulo(
                 id=articuloId,
                 codigo=data['codigo'],
-                nombre=data['nombre']
+                nombre=data['nombre'],
+                precio=data['precio']
             )
             
             articulosService.add(articulo)
@@ -111,6 +114,7 @@ def articulos_api_update(id):
         data = request.get_json()
         articulo.setCodigo(data['codigo'])
         articulo.setNombre(data['nombre'])
+        articulo.setPrecio(data['precio'])
         articulosService.update(articulo)
 
         response_data = {
